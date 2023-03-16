@@ -69,6 +69,7 @@ public class HerokuApplication {
 
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
+    System.out.println("Print statement inside Main.db. Colton Hawkins");
     try (Connection connection = dataSource.getConnection()) {
       Statement stmt = connection.createStatement();
       stmt.executeUpdate("CREATE TABLE IF NOT EXISTS table_timestamp_and_random_string (tick timestamp, random_string varchar(30))");
@@ -78,9 +79,10 @@ public class HerokuApplication {
 
       ArrayList<String> output = new ArrayList<String>();
       while (rs.next()) {
-        output.add("Read from DB: " + rs.getTimestamp("tick") + getRandomString());
-
+        output.add("Ready from DB: " + rs.getTimestamp("tick") + getRandomString());
+        System.out.println("Print statement inside Main.db. Colton Hawkins");
       }
+
 
       model.put("records", output);
       return "db";
