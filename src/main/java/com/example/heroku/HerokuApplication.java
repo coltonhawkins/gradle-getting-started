@@ -75,10 +75,11 @@ public class HerokuApplication {
       stmt.executeUpdate("INSERT INTO table_timestamp_and_random_string VALUES (now(), '" + getRandomString() + "')");
       ResultSet rs = stmt.executeQuery("SELECT tick FROM table_timestamp_and_random_string");
 
-      System.out.println("Print Statement inside the Main.db method. Colton Hawkins");
+
       ArrayList<String> output = new ArrayList<String>();
       while (rs.next()) {
         output.add("Read from DB: " + rs.getTimestamp("tick"));
+        System.out.println("Print Statement inside the Main.db method. Colton Hawkins");
       }
 
       model.put("records", output);
